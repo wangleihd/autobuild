@@ -8,17 +8,17 @@ import (
 )
 
 const (
-	fileName string = "/build.log"
-	gitPath  string = "./conf"
+	fileName string = "/build.txt"
+	gitPath  string = "/data/limitoo"
 )
 
 func main() {
 	showtime := getDate()
 	buildText := fmt.Sprintf("Auto build a commit by %s", showtime)
 
-	add := fmt.Sprintf(" cd %s && git commit -a -m \"%s\"", gitPath, buildText)
+	add := fmt.Sprintf(" cd %s && git add .", gitPath)
 	commit := fmt.Sprintf(" cd %s && git commit -a -m \"%s\"", gitPath, buildText)
-	push := fmt.Sprintf(" cd %s && git commit -a -m \"%s\"", gitPath, buildText)
+	push := fmt.Sprintf(" cd %s && git push", gitPath)
 
 	writeFile(buildText)
 
@@ -26,7 +26,6 @@ func main() {
 	Command(commit)
 	Command(push)
 
-	fmt.Println(showtime)
 }
 
 func writeFile(log string) {
