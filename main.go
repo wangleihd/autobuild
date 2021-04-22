@@ -14,14 +14,16 @@ const (
 
 func main() {
 	showtime := getDate()
-	buildText := fmt.Sprintf("Auto build a commit by %s", showtime)
+	buildText := fmt.Sprintf("Auto build %s", showtime)
 
+	pull := fmt.Sprintf(" cd %s && git pull", gitPath)
 	add := fmt.Sprintf(" cd %s && git add .", gitPath)
 	commit := fmt.Sprintf(" cd %s && git commit -a -m \"%s\"", gitPath, buildText)
 	push := fmt.Sprintf(" cd %s && git push", gitPath)
 
 	writeFile(buildText)
 
+	Command(pull)
 	Command(add)
 	Command(commit)
 	Command(push)
